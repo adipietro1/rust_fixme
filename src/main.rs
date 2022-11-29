@@ -28,6 +28,17 @@ struct Color {
     green: u8,
     blue: u8,
 }
+/// There was no display funtion for Color. So I added a fuction mirroring the function used for City. 
+impl Display for Color {
+    // f is a buffer, this method must write the formatted string into it
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        let r = format!("{:X}", self.red);
+        let g = format!("{:X}", self.green);
+        let b = format!("{:X}", self.blue);
+
+        write!(f, "RGB ({}, {}, {}) 0x{:0>2}{:0>2}{:0>2}", self.red, self.green, self.blue, r, g, b)
+    }
+}
 
 fn main() {
     for city in [
